@@ -1,5 +1,9 @@
 package ossuni
 
+import (
+	"io"
+)
+
 func NewClient(ossType OssType) Clienter {
 	if ossType == ALIYUN {
 		return new(aliOss)
