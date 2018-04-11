@@ -80,9 +80,11 @@ type AssumedRoleUser struct {
 }
 
 type STSParam struct {
-	SubAccessKeyId     string
-	SubAccessKeySecret string
-	RoleArn            string
+	Region             string // for qcloud
+	Bucket             string // for qcloud
+	SubAccessKeyId     string // for aliyun
+	SubAccessKeySecret string // for aliyun
+	RoleArn            string // for aliyun
 	RoleSessionName    string
 	ExpiredTime        uint
 }

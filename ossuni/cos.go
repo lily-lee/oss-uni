@@ -35,9 +35,14 @@ func (qc *qcloudCos) GetAuthToken() {
 
 }
 
-// TODO
+// STSCertificate from qcloud cos. you should use qc.Init() first...
 func (qc *qcloudCos) STSCertificate(param STSParam) (interface{}, error) {
-	return nil, nil
+	return qc.client.GetSTS(cos.STSReqParam{
+		Region:          param.Region,
+		Bucket:          param.Bucket,
+		DurationSeconds: int(param.ExpiredTime),
+		SessionName:     param.RoleSessionName,
+	})
 }
 
 func (qc *qcloudCos) GetService() {

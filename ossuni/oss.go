@@ -34,6 +34,7 @@ func (ao *aliOss) GetAuthToken() {
 
 }
 
+// STSCertificate from aliyun. you don't need to use ao.Init()...
 func (ao *aliOss) STSCertificate(param STSParam) (interface{}, error) {
 	stsClient := sts.NewClient(param.SubAccessKeyId, param.SubAccessKeySecret, param.RoleArn, param.RoleSessionName)
 	resp, err := stsClient.AssumeRole(param.ExpiredTime)
