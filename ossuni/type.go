@@ -49,7 +49,19 @@ type AliyunSTSRequest struct {
 	Timestamp        string // 2012-06-01T12:00:00Z
 }
 
-type AliyunSTSResult struct {
+type Policy struct {
+	Version    string
+	Statements []Statement
+}
+
+type Statement struct {
+	Effect    string
+	Action    []string
+	Resource  []string
+	Condition string
+}
+
+type STSResult struct {
 	RequestId       string
 	Credentials     Credentials
 	AssumedRoleUser AssumedRoleUser
@@ -65,4 +77,12 @@ type Credentials struct {
 type AssumedRoleUser struct {
 	Arn               string
 	AssumedRoleUserId string
+}
+
+type STSParam struct {
+	SubAccessKeyId     string
+	SubAccessKeySecret string
+	RoleArn            string
+	RoleSessionName    string
+	ExpiredTime        uint
 }

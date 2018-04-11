@@ -36,7 +36,8 @@ func (qc *qcloudCos) GetAuthToken() {
 }
 
 // TODO
-func (qc *qcloudCos) STSCertificate() {
+func (qc *qcloudCos) STSCertificate(param STSParam) (interface{}, error) {
+	return nil, nil
 }
 
 func (qc *qcloudCos) GetService() {

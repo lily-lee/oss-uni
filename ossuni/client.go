@@ -14,9 +14,9 @@ func NewClient(ossType OssType) Clienter {
 }
 
 type Clienter interface {
-	Init(config Config) error // first
-	GetAuthToken()            // TODO
-	STSCertificate()          // TODO
+	Init(config Config) error                           // first
+	GetAuthToken()                                      // TODO
+	STSCertificate(param STSParam) (interface{}, error) // TODO
 	PutObject(param ObjectParam, reader io.Reader) error
 	PutObjectFromFile(param ObjectParam, filePath string) error
 	InitMultipartUpload(param ObjectParam) (InitMultipartUploadResult, error)
@@ -27,5 +27,3 @@ type Clienter interface {
 	GetAttachmentURL(param ObjectParam) string
 	DeleteObject(param ObjectParam) error
 }
-
-

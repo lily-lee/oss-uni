@@ -2,10 +2,10 @@ package ossuni
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/aliyun/aliyun-oss-go-sdk/oss"
-
-	"io"
+	"github.com/aliyun/aliyun-sts-go-sdk/sts"
 )
 
 // aliOss is aliyun oss
@@ -34,18 +34,11 @@ func (ao *aliOss) GetAuthToken() {
 
 }
 
-func (ao *aliOss) STSCertificate() {
-	//param AliyunSTSRequest
-	//reqUrl := "https://sts.aliyuncs.com"
-	//params := map[string]string{
-	//	"Action":"AssumeRole",
-	//	"RoleArn":param.RoleArn,
-	//	"RoleSessionName":param.RoleSessionName,
-	//	"DurationSeconds":param.DurationSeconds,
-	//	"Policy":
-	//}
-	//assumeRole := types.AssumeRole{}
-	//sts.GetSecurityToken(ao.config.AccessKeyID, ao.config.AccessKeySecret, &assumeRole)
+func (ao *aliOss) STSCertificate(param STSParam) (interface{}, error) {
+	stsClient := sts.NewClient(param.SubAccessKeyId, param.SubAccessKeySecret, param.RoleArn, param.RoleSessionName)
+	resp, err := stsClient.AssumeRole(param.ExpiredTime)
+
+	return resp, err
 }
 
 func (ao *aliOss) GetService() {
