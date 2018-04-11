@@ -1,10 +1,5 @@
 package ossuni
 
-import (
-	"io"
-	"log"
-)
-
 func NewClient(ossType OssType) Clienter {
 	if ossType == ALIYUN {
 		return new(aliOss)
@@ -14,9 +9,9 @@ func NewClient(ossType OssType) Clienter {
 }
 
 type Clienter interface {
-	Init(config Config) error                           // first
-	GetAuthToken()                                      // TODO
-	STSCertificate(param STSParam) (interface{}, error) // TODO
+	Init(config Config) error // first
+	GetAuthToken()            // TODO
+	STSCertificate(param STSParam) (interface{}, error)
 	PutObject(param ObjectParam, reader io.Reader) error
 	PutObjectFromFile(param ObjectParam, filePath string) error
 	InitMultipartUpload(param ObjectParam) (InitMultipartUploadResult, error)
