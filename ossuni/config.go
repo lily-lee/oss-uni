@@ -21,6 +21,6 @@ type Config struct {
 	AccessKeyID     string `json:"accessKeyID"`     //  aliyun accessKeyID
 	AccessKeySecret string `json:"accessKeySecret"` // aliyun accessKeySecret
 	Endpoint        string `json:"endpoint"`        // aliyun
-	CdnURL          string `json:"cdnUrl"`          // aliyun
 
+	CdnURL string `json:"cdnUrl"`
 }

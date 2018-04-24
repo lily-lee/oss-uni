@@ -168,5 +168,9 @@ func (qc *qcloudCos) MultiPartUpload() {
 }
 
 func (qc *qcloudCos) GetAttachmentURL(param ObjectParam) string {
+	if qc.config.CdnURL != "" {
+		return fmt.Sprintf("%s://%s/%s", qc.config.Scheme, qc.config.CdnURL, param.Key)
+	}
+
 	return fmt.Sprintf("%s://%s.cos.%s.myqcloud.com/%s", qc.config.Scheme, param.Bucket, param.Region, param.Key)
 }
