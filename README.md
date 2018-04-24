@@ -4,9 +4,13 @@
 
 为了方便在两个云之间做切换
 
-# Install
+# Install & Update
 ```bash
+// Install
 go get github.com/lily-lee/oss-uni/ossuni
+
+// Update
+go get -u github.com/lily-lee/oss-uni/ossuni
 
 ```
 
