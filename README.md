@@ -6,10 +6,10 @@
 
 # Install & Update
 ```bash
-// Install
+# Install
 go get github.com/lily-lee/oss-uni/ossuni
 
-// Update
+# Update
 go get -u github.com/lily-lee/oss-uni/ossuni
 
 ```

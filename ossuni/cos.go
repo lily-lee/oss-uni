@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/lily-lee/qcloud-cos-go-sdk/cos"
+	"strings"
 )
 
 // qcloudCos is qcloud cos
@@ -172,5 +173,11 @@ func (qc *qcloudCos) GetAttachmentURL(param ObjectParam) string {
 		return fmt.Sprintf("%s://%s/%s", qc.config.Scheme, qc.config.CdnURL, param.Key)
 	}
 
-	return fmt.Sprintf("%s://%s.cos.%s.myqcloud.com/%s", qc.config.Scheme, param.Bucket, param.Region, param.Key)
+	bucketName := param.Bucket
+	appID := qc.client.Config.APPID
+	if strings.Contains(bucketName, appID) {
+		bucketName = fmt.Sprintf("%s-%s", bucketName, appID)
+	}
+
+	return fmt.Sprintf("%s://%s.cos.%s.myqcloud.com/%s", qc.config.Scheme, bucketName, param.Region, param.Key)
 }
